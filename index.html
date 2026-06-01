@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Locomotive big form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <nav>
+        <a href="#" class="brand">Locomotive</a>
+
+        <div class="navigation">
+          <a href="#">Work,</a>
+          <a href="#">Agency,</a>
+          <a href="#">Careers,</a>
+          <a href="#">Store</a>
+        </div>
+
+        <a href="#" class="talk">Let's talk</a>
+      </nav>
+      <div class="hero-text">
+        <h1>Locomotive</h1>
+        <h1>Digital-first <br />Design Agency*</h1>
+      </div>
+    </div>
+
+    <div class="form">
+      <h1>Publish your new project</h1>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input
+          type="hidden"
+          name="access_key"
+          value="351976b9-cf6f-4fbb-bb01-a989b3a0ab85"
+        />
+        <input
+          type="hidden"
+          name="redirect"
+          value="http://127.0.0.1:5500/congrats.html"
+        />
+        <label for="Project title">Project title</label>
+        <input id="Project title" type="text" />
+
+        <label for="City-country ">City, country</label>
+        <input id="City-country" type="text" />
+
+        <div class="dropdown-container-project">
+          <label for="search-input">Project type</label>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search or select"
+            autocomplete="off"
+          />
+
+          <ul id="dropdown-list" class="dropdown-list hidden">
+            <!-- options injected by JS -->
+          </ul>
+        </div>
+
+        <textarea name="Project Description" id="Project Description">
+Project description</textarea
+        >
+
+        <label for="thumbnail">Add a thumbnail image</label>
+        <input type="file" id="thumbnail" />
+
+        <label for="Field">Field</label>
+
+        <input id="Branding" name="Branding" type="checkbox" />
+        <label for="Branding">Branding</label>
+
+        <input id="Digital" name="Digital" type="checkbox" />
+        <label for="Digital">Digital</label>
+
+        <input id="content" name="Content" type="checkbox" />
+        <label for="content">Content</label>
+
+        <input id="Experience" name="Experience" type="checkbox" />
+        <label for="Experience">Experience</label>
+
+        <input id="E-commerce" name="E-commerce" type="checkbox" />
+        <label for="E-commerce">E-commerce</label>
+
+        <label for="image">Add an image</label>
+        <input type="file" id="image" />
+
+        <label for="year">Year</label>
+        <select name="year" id="year">
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+          <option value="2014">2014</option>
+          <option value="2013">2013</option>
+          <option value="2012">2012</option>
+          <option value="2011">2011</option>
+          <option value="2010">2010</option>
+          <option value="2009">2009</option>
+          <option value="2008">2008</option>
+        </select>
+
+        <label for="awards">Number of awards</label>
+
+        <div class="number-wrap">
+          <input
+            type="number"
+            id="awards"
+            name="awards"
+            value="0"
+            min="0"
+            step="1"
+          />
+
+          <button
+            type="button"
+            class="number-btn"
+            data-action="decrement"
+            aria-label="Decrease"
+          >
+            −
+          </button>
+          <button
+            type="button"
+            class="number-btn"
+            data-action="increment"
+            aria-label="Increase"
+          >
+            +
+          </button>
+        </div>
+
+        <label for="case-study-url">URL to Case study</label>
+        <input type="url" id="case-study-url" name="case-study-url" />
+
+        <label for="website-url">URL to visit website</label>
+        <input type="url" id="website-url" name="website-url" />
+
+        <button type="submit">Publish</button>
+      </form>
+    </div>
+
+    <script src="interactions.js"></script>
+  </body>
+</html>
