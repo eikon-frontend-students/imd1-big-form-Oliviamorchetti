@@ -8,20 +8,22 @@ body {
   margin: 0;
 }
 .hero {
-  min-height: 100vh;
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100vh;
+  z-index: 0;
 }
-nav {
-  display: flex;
-  justify-content: space-between;
-  text-decoration: none;
-}
+
 .form {
   background-color: #c94638;
   padding: 40px;
   min-height: 100vh;
   width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh;
 }
 
 .talk {
@@ -173,7 +175,7 @@ nav {
 .description {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+
   border-bottom: 1px solid black;
   padding: 40px 0;
 }
@@ -258,6 +260,28 @@ textarea {
 .checkboxfirst label,
 .checkboxsecond label {
   font-size: 14px;
+  cursor: pointer;
+}
+
+.checkboxfirst input[type="checkbox"],
+.checkboxsecond input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #000000;
+  background-color: #c94638;
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkboxfirst input[type="checkbox"]:checked,
+.checkboxsecond input[type="checkbox"]:checked {
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13l4 4L19 7' stroke='white' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
 }
 
 .field-columns {
@@ -397,6 +421,13 @@ textarea {
   width: 200px;
   height: 40px;
   border: none;
+  margin-bottom: 100px;
+}
+
+.submit:hover button {
+  background-color: #c94638;
+  color: black;
+  border-bottom: 1px solid black;
 }
 
 a {
@@ -413,6 +444,7 @@ ul {
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
+  justify-content: center;
 }
 
 .menu-cookies {
@@ -426,6 +458,19 @@ footer {
   background-color: #c94638;
   font-family: Arial, Helvetica, sans-serif;
   justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 40px;
+  border-top: 1px solid black;
 }
 
 label {

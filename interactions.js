@@ -169,66 +169,14 @@ awardsInput.addEventListener("input", () => {
 
 awardsInput.addEventListener("blur", clampAwardsValue);
 
-// #region agent log
-function logFieldStyles() {
-  const year = document.getElementById("year");
-  const search = document.getElementById("search-input");
-  if (!year || !search) return;
+const hero = document.querySelector(".hero");
 
-  const yearStyles = getComputedStyle(year);
-  const searchStyles = getComputedStyle(search);
-
-  fetch("http://127.0.0.1:7913/ingest/2d6e8572-42d6-434a-a73a-a160bc98af92", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "78ee78",
-    },
-    body: JSON.stringify({
-      sessionId: "78ee78",
-      runId: "post-fix",
-      hypothesisId: "H1-H3",
-      location: "interactions.js:logFieldStyles",
-      message: "year vs search computed styles",
-      data: {
-        year: {
-          appearance: yearStyles.appearance,
-          webkitAppearance: yearStyles.getPropertyValue("-webkit-appearance"),
-          backgroundColor: yearStyles.backgroundColor,
-          backdropFilter: yearStyles.backdropFilter,
-          backgroundImage: yearStyles.backgroundImage,
-        },
-        search: {
-          appearance: searchStyles.appearance,
-          webkitAppearance: searchStyles.getPropertyValue("-webkit-appearance"),
-          backgroundColor: searchStyles.backgroundColor,
-          backdropFilter: searchStyles.backdropFilter,
-        },
-      },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
+function updateFormSlide() {
+  const heroHeight = window.innerHeight;
+  const progress = Math.min(window.scrollY / heroHeight, 1);
+  hero.style.opacity = String(1 - progress);
 }
 
-window.addEventListener("load", logFieldStyles);
-document.getElementById("year")?.addEventListener("focus", () => {
-  fetch("http://127.0.0.1:7913/ingest/2d6e8572-42d6-434a-a73a-a160bc98af92", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "78ee78",
-    },
-    body: JSON.stringify({
-      sessionId: "78ee78",
-      runId: "pre-fix",
-      hypothesisId: "H4",
-      location: "interactions.js:yearFocus",
-      message: "year select focused",
-      data: {
-        appearance: getComputedStyle(document.getElementById("year")).appearance,
-      },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-});
-// #endregion
+window.addEventListener("scroll", updateFormSlide, { passive: true });
+window.addEventListener("resize", updateFormSlide);
+updateFormSlide();
