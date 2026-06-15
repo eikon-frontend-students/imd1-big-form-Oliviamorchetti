@@ -45,116 +45,205 @@
           name="redirect"
           value="http://127.0.0.1:5500/congrats.html"
         />
-        <label for="Project title">Project title</label>
-        <input id="Project title" type="text" />
+        <div class="first-section">
+          <div class="title">
+            <label for="Project title">Project title</label>
+            <input id="Project title" type="text" />
+          </div>
+          <div class="citycountry">
+            <label for="City-country">City, country</label>
+            <input id="City-country" type="text" autocomplete="off" />
+            <ul id="city-dropdown-list" class="dropdown-list hidden"></ul>
+          </div>
 
-        <label for="City-country ">City, country</label>
-        <input id="City-country" type="text" />
+          <div class="dropdown-container-project">
+            <label for="search-input">Project type</label>
+            <input type="text" id="search-input" autocomplete="off" />
 
-        <div class="dropdown-container-project">
-          <label for="search-input">Project type</label>
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Search or select"
-            autocomplete="off"
-          />
-
-          <ul id="dropdown-list" class="dropdown-list hidden">
-            <!-- options injected by JS -->
-          </ul>
+            <ul id="dropdown-list" class="dropdown-list hidden">
+              <!-- options injected by JS -->
+            </ul>
+          </div>
         </div>
-
-        <textarea name="Project Description" id="Project Description">
-Project description</textarea
-        >
-
-        <label for="thumbnail">Add a thumbnail image</label>
-        <input type="file" id="thumbnail" />
-
-        <label for="Field">Field</label>
-
-        <input id="Branding" name="Branding" type="checkbox" />
-        <label for="Branding">Branding</label>
-
-        <input id="Digital" name="Digital" type="checkbox" />
-        <label for="Digital">Digital</label>
-
-        <input id="content" name="Content" type="checkbox" />
-        <label for="content">Content</label>
-
-        <input id="Experience" name="Experience" type="checkbox" />
-        <label for="Experience">Experience</label>
-
-        <input id="E-commerce" name="E-commerce" type="checkbox" />
-        <label for="E-commerce">E-commerce</label>
-
-        <label for="image">Add an image</label>
-        <input type="file" id="image" />
-
-        <label for="year">Year</label>
-        <select name="year" id="year">
-          <option value="2026">2026</option>
-          <option value="2025">2025</option>
-          <option value="2024">2024</option>
-          <option value="2023">2023</option>
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
-          <option value="2018">2018</option>
-          <option value="2017">2017</option>
-          <option value="2016">2016</option>
-          <option value="2015">2015</option>
-          <option value="2014">2014</option>
-          <option value="2013">2013</option>
-          <option value="2012">2012</option>
-          <option value="2011">2011</option>
-          <option value="2010">2010</option>
-          <option value="2009">2009</option>
-          <option value="2008">2008</option>
-        </select>
-
-        <label for="awards">Number of awards</label>
-
-        <div class="number-wrap">
-          <input
-            type="number"
-            id="awards"
-            name="awards"
-            value="0"
-            min="0"
-            step="1"
-          />
-
-          <button
-            type="button"
-            class="number-btn"
-            data-action="decrement"
-            aria-label="Decrease"
-          >
-            −
-          </button>
-          <button
-            type="button"
-            class="number-btn"
-            data-action="increment"
-            aria-label="Increase"
-          >
-            +
-          </button>
+        <div class="description">
+          <label for="Project Description">Project Description</label>
+          <textarea
+            name="Project Description"
+            id="Project Description"
+          ></textarea>
         </div>
+        <div class="thumbnail-field">
+          <div class="thumbnail">
+            <label for="thumbnail">Add a thumbnail image</label>
+            <label class="file-upload-box">
+              <input type="file" id="thumbnail" />
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 16V4M12 4L8 8M12 4L16 8" />
+                <path d="M4 20H20" />
+              </svg>
+            </label>
+          </div>
+          <div class="field-group">
+            <label for="Field">Field</label>
+            <div class="field-columns">
+              <div class="checkboxfirst">
+                <input id="Branding" name="Branding" type="checkbox" />
+                <label for="Branding">Branding</label>
 
-        <label for="case-study-url">URL to Case study</label>
-        <input type="url" id="case-study-url" name="case-study-url" />
+                <input id="Digital" name="Digital" type="checkbox" />
+                <label for="Digital">Digital</label>
 
-        <label for="website-url">URL to visit website</label>
-        <input type="url" id="website-url" name="website-url" />
+                <input id="content" name="Content" type="checkbox" />
+                <label for="content">Content</label>
+              </div>
+              <div class="checkboxsecond">
+                <input id="Experience" name="Experience" type="checkbox" />
+                <label for="Experience">Experience</label>
 
-        <button type="submit">Publish</button>
+                <input id="E-commerce" name="E-commerce" type="checkbox" />
+                <label for="E-commerce">E-commerce</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="iyn">
+          <div class="image">
+            <label for="image">Add an image</label>
+            <label class="file-upload-box">
+              <input type="file" id="image" />
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 16V4M12 4L8 8M12 4L16 8" />
+                <path d="M4 20H20" />
+              </svg>
+            </label>
+          </div>
+          <div class="year">
+            <label for="year">Year</label>
+            <select name="year" id="year">
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+              <option value="2009">2009</option>
+              <option value="2008">2008</option>
+            </select>
+          </div>
+          <div class="awards">
+            <label for="awards">Number of awards</label>
+
+            <div class="number-wrap">
+              <input
+                type="number"
+                id="awards"
+                name="awards"
+                value="0"
+                min="0"
+                step="1"
+              />
+
+              <button
+                type="button"
+                class="number-btn"
+                data-action="decrement"
+                aria-label="Decrease"
+              >
+                −
+              </button>
+              <button
+                type="button"
+                class="number-btn"
+                data-action="increment"
+                aria-label="Increase"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="urls">
+          <div class="url">
+            <label for="case-study-url">URL to Case study</label>
+            <div class="url-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+              <input type="url" id="case-study-url" name="case-study-url" />
+            </div>
+          </div>
+          <div class="url">
+            <label for="website-url">URL to visit website</label>
+            <div class="url-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+              <input type="url" id="website-url" name="website-url" />
+            </div>
+          </div>
+        </div>
+        <div class="submit">
+          <button type="submit">PUBLISH</button>
+        </div>
       </form>
     </div>
 
+    <footer>
+      <div class="footer">
+        <p>Menu</p>
+        <div class="menu-cookies">
+          <ul>
+            <li><a href="#">Work</a></li>
+            <li><a href="#">Agency</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Let's talk</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Français</a></li>
+          </ul>
+        </div>
+        <div class="Cookies">
+          <ul>
+            <li><a href="#">Cookies preferences</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>Social</p>
+
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer">
+        <p>External</p>
+
+        <ul>
+          <li><a href="#">Store</a></li>
+          <li><a href="#">Locomotive scroll</a></li>
+          <li><a href="#">Annual trips</a></li>
+          <li><a href="#">Dynasty</a></li>
+        </ul>
+      </div>
+    </footer>
     <script src="interactions.js"></script>
   </body>
 </html>

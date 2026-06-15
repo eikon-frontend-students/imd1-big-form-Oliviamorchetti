@@ -1,36 +1,36 @@
 const options = [
-  "Talentmanagement",
-  "Automotive",
-  "Hospitalité",
-  "Education",
-  "Finance",
-  "Licensing",
-  "Construction",
-  "Business support",
-  "Social cause",
-  "Environnement",
-  "Municipality",
   "Architecture",
-  "E commerce",
-  "Software",
-  "Marketing",
-  "Beverage",
-  "Cinema",
-  "Medical",
-  "Event",
-  "Tecnology",
   "Art and culture",
-  "Fintech",
-  "Typography",
-  "Gaming",
-  "Leisure",
-  "Design and production",
-  "Fashion",
+  "Automotive",
+  "Beverage",
+  "Business support",
+  "Cinema",
+  "Construction",
   "Design",
   "Design and marketing",
-  "Sports",
-  "Tourism",
+  "Design and production",
+  "E commerce",
+  "Education",
+  "Environnement",
+  "Event",
+  "Fashion",
+  "Finance",
+  "Fintech",
   "Food",
+  "Gaming",
+  "Hospitalité",
+  "Leisure",
+  "Licensing",
+  "Marketing",
+  "Medical",
+  "Municipality",
+  "Social cause",
+  "Software",
+  "Sports",
+  "Talentmanagement",
+  "Tecnology",
+  "Tourism",
+  "Typography",
   // paste your full list here
 ];
 
@@ -68,7 +68,77 @@ document.addEventListener("click", (e) => {
   if (!e.target.closest(".dropdown-container-project")) {
     list.classList.add("hidden");
   }
+  if (!e.target.closest(".citycountry")) {
+    cityList.classList.add("hidden");
+  }
 });
+
+const cityInput = document.getElementById("City-country");
+const cityList = document.getElementById("city-dropdown-list");
+let cityDebounceTimer;
+
+function formatCityCountry(place) {
+  const addr = place.address || {};
+  const city =
+    addr.city ||
+    addr.town ||
+    addr.village ||
+    addr.municipality ||
+    place.name;
+  const country = addr.country;
+  if (!city || !country) return null;
+  return `${city}, ${country}`;
+}
+
+function renderCityList(results) {
+  cityList.innerHTML = "";
+
+  results.forEach((label) => {
+    const li = document.createElement("li");
+    li.textContent = label;
+    li.addEventListener("click", () => {
+      cityInput.value = label;
+      cityList.classList.add("hidden");
+    });
+    cityList.appendChild(li);
+  });
+
+  cityList.classList.toggle("hidden", results.length === 0);
+}
+
+async function searchCities(query) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=10&featuretype=settlement`;
+
+  const response = await fetch(url, {
+    headers: {
+      "Accept-Language": "en",
+    },
+  });
+
+  if (!response.ok) return;
+
+  const data = await response.json();
+  const labels = [
+    ...new Set(data.map(formatCityCountry).filter(Boolean)),
+  ];
+
+  renderCityList(labels.slice(0, 8));
+}
+
+function handleCitySearch() {
+  clearTimeout(cityDebounceTimer);
+  const query = cityInput.value.trim();
+
+  if (query.length < 2) {
+    cityList.classList.add("hidden");
+    return;
+  }
+
+  cityDebounceTimer = setTimeout(() => searchCities(query), 400);
+}
+
+cityInput.addEventListener("input", handleCitySearch);
+cityInput.addEventListener("focus", handleCitySearch);
 
 const awardsInput = document.getElementById("awards");
 
@@ -98,3 +168,67 @@ awardsInput.addEventListener("input", () => {
 });
 
 awardsInput.addEventListener("blur", clampAwardsValue);
+
+// #region agent log
+function logFieldStyles() {
+  const year = document.getElementById("year");
+  const search = document.getElementById("search-input");
+  if (!year || !search) return;
+
+  const yearStyles = getComputedStyle(year);
+  const searchStyles = getComputedStyle(search);
+
+  fetch("http://127.0.0.1:7913/ingest/2d6e8572-42d6-434a-a73a-a160bc98af92", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "78ee78",
+    },
+    body: JSON.stringify({
+      sessionId: "78ee78",
+      runId: "post-fix",
+      hypothesisId: "H1-H3",
+      location: "interactions.js:logFieldStyles",
+      message: "year vs search computed styles",
+      data: {
+        year: {
+          appearance: yearStyles.appearance,
+          webkitAppearance: yearStyles.getPropertyValue("-webkit-appearance"),
+          backgroundColor: yearStyles.backgroundColor,
+          backdropFilter: yearStyles.backdropFilter,
+          backgroundImage: yearStyles.backgroundImage,
+        },
+        search: {
+          appearance: searchStyles.appearance,
+          webkitAppearance: searchStyles.getPropertyValue("-webkit-appearance"),
+          backgroundColor: searchStyles.backgroundColor,
+          backdropFilter: searchStyles.backdropFilter,
+        },
+      },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+}
+
+window.addEventListener("load", logFieldStyles);
+document.getElementById("year")?.addEventListener("focus", () => {
+  fetch("http://127.0.0.1:7913/ingest/2d6e8572-42d6-434a-a73a-a160bc98af92", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Debug-Session-Id": "78ee78",
+    },
+    body: JSON.stringify({
+      sessionId: "78ee78",
+      runId: "pre-fix",
+      hypothesisId: "H4",
+      location: "interactions.js:yearFocus",
+      message: "year select focused",
+      data: {
+        appearance: getComputedStyle(document.getElementById("year")).appearance,
+      },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+});
+// #endregion
