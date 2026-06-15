@@ -31,24 +31,23 @@ const options = [
   "Tecnology",
   "Tourism",
   "Typography",
-  // paste your full list here
 ];
 
-const input = document.getElementById("search-input");
-const list = document.getElementById("dropdown-list");
+const projectInput = document.getElementById("search-input");
+const projectList = document.getElementById("dropdown-list");
 
-function renderList(filter = "") {
-  const filtered = options.filter((opt) =>
-    opt.toLowerCase().includes(filter.toLowerCase()),
+function renderList(items, list, input, filter = "") {
+  const filtered = items.filter((item) =>
+    item.toLowerCase().includes(filter.toLowerCase()),
   );
 
   list.innerHTML = "";
 
-  filtered.forEach((opt) => {
+  filtered.forEach((item) => {
     const li = document.createElement("li");
-    li.textContent = opt;
+    li.textContent = item;
     li.addEventListener("click", () => {
-      input.value = opt; // autofill the input
+      input.value = item;
       list.classList.add("hidden");
     });
     list.appendChild(li);
@@ -57,21 +56,8 @@ function renderList(filter = "") {
   list.classList.toggle("hidden", filtered.length === 0);
 }
 
-// Show list on focus
-input.addEventListener("focus", () => renderList(input.value));
-
-// Filter as user types
-input.addEventListener("input", () => renderList(input.value));
-
-// Hide list when clicking outside
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".dropdown-container-project")) {
-    list.classList.add("hidden");
-  }
-  if (!e.target.closest(".citycountry")) {
-    cityList.classList.add("hidden");
-  }
-});
+projectInput.addEventListener("focus", () => renderList(options, projectList, projectInput, projectInput.value));
+projectInput.addEventListener("input", () => renderList(options, projectList, projectInput, projectInput.value));
 
 const cityInput = document.getElementById("City-country");
 const cityList = document.getElementById("city-dropdown-list");
@@ -90,39 +76,17 @@ function formatCityCountry(place) {
   return `${city}, ${country}`;
 }
 
-function renderCityList(results) {
-  cityList.innerHTML = "";
-
-  results.forEach((label) => {
-    const li = document.createElement("li");
-    li.textContent = label;
-    li.addEventListener("click", () => {
-      cityInput.value = label;
-      cityList.classList.add("hidden");
-    });
-    cityList.appendChild(li);
-  });
-
-  cityList.classList.toggle("hidden", results.length === 0);
-}
-
 async function searchCities(query) {
   const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=10&featuretype=settlement`;
-
   const response = await fetch(url, {
-    headers: {
-      "Accept-Language": "en",
-    },
+    headers: { "Accept-Language": "en" },
   });
 
   if (!response.ok) return;
 
   const data = await response.json();
-  const labels = [
-    ...new Set(data.map(formatCityCountry).filter(Boolean)),
-  ];
-
-  renderCityList(labels.slice(0, 8));
+  const labels = [...new Set(data.map(formatCityCountry).filter(Boolean))];
+  renderList(labels.slice(0, 8), cityList, cityInput);
 }
 
 function handleCitySearch() {
@@ -139,6 +103,15 @@ function handleCitySearch() {
 
 cityInput.addEventListener("input", handleCitySearch);
 cityInput.addEventListener("focus", handleCitySearch);
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".dropdown-container-project")) {
+    projectList.classList.add("hidden");
+  }
+  if (!e.target.closest(".citycountry")) {
+    cityList.classList.add("hidden");
+  }
+});
 
 const awardsInput = document.getElementById("awards");
 
@@ -172,8 +145,8 @@ awardsInput.addEventListener("blur", clampAwardsValue);
 const hero = document.querySelector(".hero");
 
 function updateFormSlide() {
-  const heroHeight = window.innerHeight;
-  const progress = Math.min(window.scrollY / heroHeight, 1);
+  if (!hero) return;
+  const progress = Math.min(window.scrollY / window.innerHeight, 1);
   hero.style.opacity = String(1 - progress);
 }
 

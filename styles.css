@@ -1,12 +1,15 @@
 * {
   box-sizing: border-box;
 }
+
 input {
   outline: none;
 }
+
 body {
   margin: 0;
 }
+
 .hero {
   position: fixed;
   top: 0;
@@ -14,30 +17,6 @@ body {
   width: 100%;
   height: 100vh;
   z-index: 0;
-}
-
-.form {
-  background-color: #c94638;
-  padding: 40px;
-  min-height: 100vh;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  margin-top: 100vh;
-}
-
-.talk {
-  display: flex;
-  justify-content: end;
-}
-
-.navigation {
-  display: flex;
-}
-
-.navigation a {
-  text-decoration: none;
-  color: black;
 }
 
 .hero-text {
@@ -59,10 +38,14 @@ body {
   font-size: 72px;
   margin-bottom: 0;
 }
-.dropdown-container-project {
+
+.form {
+  background-color: #c94638;
+  padding: 40px;
+  min-height: 100vh;
   position: relative;
-  min-width: 0;
-  display: grid;
+  z-index: 1;
+  margin-top: 100vh;
 }
 
 .form h1 {
@@ -71,35 +54,36 @@ body {
   color: white;
 }
 
+label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
 #search-input,
 .title input,
 #City-country {
   width: 100%;
+  height: 40px;
   padding: 8px 12px;
+  margin: 4px 0 0;
   border: 1px solid #000000;
   background-color: #c94638;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  box-sizing: border-box;
-  margin: 4px 0 0;
-  height: 40px;
 }
 
 #year {
   width: 100%;
+  height: 40px;
   padding: 8px 32px 8px 12px;
+  margin: 4px 0 0;
   border: 1px solid #000000;
   background-color: #c94638;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  box-sizing: border-box;
-  margin: 4px 0 0;
-  height: 40px;
   appearance: none;
   -webkit-appearance: none;
-  -moz-appearance: none;
   border-radius: 0;
-  color: #000000;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' stroke='black' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
@@ -109,7 +93,12 @@ body {
 
 #year option {
   background-color: #c94638;
-  color: #000000;
+}
+
+.dropdown-container-project,
+.citycountry {
+  position: relative;
+  min-width: 0;
 }
 
 .dropdown-list {
@@ -117,14 +106,14 @@ body {
   top: 100%;
   left: 0;
   right: 0;
+  margin: 4px 0 0;
+  padding: 8px 12px;
   border: 1px solid #000000;
-  font-family: Arial, Helvetica, sans-serif;
   background-color: #c94638;
+  font-family: Arial, Helvetica, sans-serif;
   max-height: 200px;
   overflow-y: auto;
   list-style: none;
-  margin: 4px 0 0;
-  padding: 8px 12px;
 }
 
 .dropdown-list li {
@@ -152,32 +141,20 @@ body {
   margin: 0;
 }
 
-.title {
-  display: grid;
-  flex-direction: column;
-}
-
-.citycountry {
-  display: grid;
-  flex-direction: column;
-  position: relative;
-  min-width: 0;
-}
-
-.first-section {
+.first-section,
+.description,
+.thumbnail-field,
+.iyn,
+.urls {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   border-bottom: 1px solid black;
-  padding-bottom: 40px;
+  padding: 40px 0;
 }
 
-.description {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  border-bottom: 1px solid black;
-  padding: 40px 0;
+.first-section {
+  padding-top: 0;
 }
 
 .description label,
@@ -187,32 +164,14 @@ body {
 
 #Project\ Description {
   resize: none;
-  background-color: #c94638;
-  border: 1px solid #000000;
-  height: 160px;
   width: 100%;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  height: 160px;
   padding: 8px 12px;
-  box-sizing: border-box;
-}
-textarea {
   margin: 4px 0 0;
-}
-
-.thumbnail-field {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: flex-start;
-  border-bottom: 1px solid black;
-  padding: 40px 0;
-}
-
-.thumbnail {
-  display: grid;
-  flex-direction: column;
-  grid-column: 1;
+  border: 1px solid #000000;
+  background-color: #c94638;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
 }
 
 .field-group {
@@ -221,15 +180,20 @@ textarea {
   grid-column: span 2;
 }
 
+.field-columns {
+  display: flex;
+  gap: 24px;
+}
+
 .file-upload-box {
-  display: grid;
+  display: flex;
   align-items: center;
   justify-content: center;
   height: 120px;
+  margin-top: 4px;
   border: 1px solid black;
   background-color: #c94638;
   cursor: pointer;
-  margin-top: 4px;
 }
 
 .file-upload-box input[type="file"] {
@@ -247,6 +211,15 @@ textarea {
   stroke-width: 1.5;
 }
 
+.iyn .file-upload-box {
+  height: 40px;
+}
+
+.iyn .file-upload-box svg {
+  width: 20px;
+  height: 20px;
+}
+
 .checkboxfirst,
 .checkboxsecond {
   display: grid;
@@ -254,9 +227,11 @@ textarea {
   gap: 8px;
   align-items: center;
 }
+
 .checkboxfirst {
   margin-top: 4px;
 }
+
 .checkboxfirst label,
 .checkboxsecond label {
   font-size: 14px;
@@ -265,14 +240,14 @@ textarea {
 
 .checkboxfirst input[type="checkbox"],
 .checkboxsecond input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
   width: 18px;
   height: 18px;
+  margin: 0;
   border: 1px solid #000000;
   background-color: #c94638;
+  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
-  margin: 0;
 }
 
 .checkboxfirst input[type="checkbox"]:checked,
@@ -284,50 +259,25 @@ textarea {
   background-size: 14px;
 }
 
-.field-columns {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-}
-
-.image,
-.year,
-.awards {
-  display: grid;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.iyn {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: stretch;
-  border-bottom: 1px solid black;
-  padding: 40px 0;
-}
-
 .number-wrap {
   display: flex;
-  border: 1px solid #000000;
-  margin: 4px 0 0;
   height: 40px;
+  margin: 4px 0 0;
+  border: 1px solid #000000;
 }
 
 .number-wrap input,
 .number-wrap button {
   border: none;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #c94638;
-  padding: 8px 12px;
   margin: 0;
+  padding: 8px 12px;
+  background-color: #c94638;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  height: 100%;
 }
 
 .number-wrap input {
   flex: 1;
-  width: auto;
 }
 
 .number-wrap button {
@@ -337,63 +287,31 @@ textarea {
   cursor: pointer;
 }
 
-.iyn .file-upload-box {
-  height: 40px;
-}
-
-.iyn .file-upload-box svg {
-  width: 20px;
-  height: 20px;
-}
-
-.urls {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  border-bottom: 1px solid black;
-  padding: 40px 0;
-}
-
 .url {
-  display: grid;
-  flex-direction: column;
   min-width: 0;
-}
-
-.url:first-child {
-  grid-column: 1;
 }
 
 .url:last-child {
   grid-column: 2;
 }
 
-.submit {
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
-}
-
 .url-input-wrap {
   display: flex;
   align-items: center;
-  border: 1px solid #000000;
-  background-color: #c94638;
+  height: 40px;
   margin: 4px 0 0;
   padding: 0 12px;
-  box-sizing: border-box;
-  height: 40px;
+  border: 1px solid #000000;
+  background-color: #c94638;
 }
 
 .url-input-wrap input {
+  width: 100%;
+  padding: 8px 0 8px 8px;
   border: none;
   background-color: transparent;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 8px 0 8px 8px;
   font-size: 14px;
-  width: 100%;
-  box-sizing: border-box;
-  outline: none;
 }
 
 .url-input-wrap:focus-within {
@@ -412,16 +330,22 @@ textarea {
   stroke-width: 1.5;
 }
 
+.submit {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
 .submit button {
+  width: 200px;
+  height: 40px;
+  border: none;
+  margin-bottom: 100px;
   background-color: #000000;
   font-family: "Cormorant", serif;
   color: white;
   font-size: 12px;
   letter-spacing: 1px;
-  width: 200px;
-  height: 40px;
-  border: none;
-  margin-bottom: 100px;
 }
 
 .submit:hover button {
@@ -441,27 +365,22 @@ ul {
 
 .footer {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 100%;
   justify-content: center;
+  width: 100%;
 }
 
 .menu-cookies {
   display: flex;
-  flex-direction: row;
 }
 
 footer {
   display: flex;
-  flex-direction: row;
+  position: relative;
+  z-index: 1;
+  padding: 40px 0;
   background-color: #c94638;
   font-family: Arial, Helvetica, sans-serif;
   justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  position: relative;
-  z-index: 1;
 }
 
 footer::before {
@@ -471,9 +390,4 @@ footer::before {
   left: 40px;
   right: 40px;
   border-top: 1px solid black;
-}
-
-label {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
 }
